@@ -1,0 +1,24 @@
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^(.*)$ $1.php
+
+RewriteCond %{REQUEST_FILENAME} !-d
+#RewriteCond %{REQUEST_FILENAME} !-f
+
+RewriteRule ^([^\.]+)$ $1.php [NC,L]
+# NC makes the rule non case sensitive
+# L makes this the last rule that this specific condition will match
+
+# Redirect Trailing Slashes If Not A Folder...
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} (.+)/$
+RewriteRule ^ %1 [L,R=301]
+
+RewriteRule ^edit-category/([0-9]+) edit-category.php?id=$1 [NC,L]
+RewriteRule ^edit-type/([0-9]+) edit-type.php?id=$1 [NC,L]
+RewriteRule ^view-user-profile/([0-9]+) view-user-profile.php?id=$1 [NC,L]
+RewriteRule ^view-orders/([a-zA-Z0-9]+) view-orders.php?id=$1 [NC,L]
+RewriteRule ^edit-product/([0-9]+) edit-product.php?id=$1 [NC,L]
+RewriteRule ^view-vendor-profile/([0-9]+) view-vendor-profile.php?id=$1 [NC,L]
+
